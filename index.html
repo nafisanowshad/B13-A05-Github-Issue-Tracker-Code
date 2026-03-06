@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Issue Tracker</title>
+    <title>Github Issue Tracker | Signin</title>
 
     <!-- favicon connect -->
     <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
@@ -38,16 +38,16 @@
         <p class="bg-white text-[#64748B] mb-6 text-center">Sign in to manage your issues</p>
 
         <h3 class="bg-white text-[#1F2937] font-medium mb-2">Username</h3>
-        <input type="text" class="bg-white text-[#64748B] p-1 rounded-sm w-full border-2 border-gray-300 mb-[6px]"
+        <input type="text" id="user" class="bg-white text-[#64748B] p-1 rounded-sm w-full border-2 border-gray-300 mb-[6px]"
             required placeholder="Enter Username" maxlength="5" />
         <p class="bg-white text-[#4A00FF] text-sm mb-4">Default: admin</p>
 
         <h3 class="bg-white text-[#1F2937] font-medium mb-2">Password</h3>
-        <input type="password" class="bg-white text-[#64748B] p-1 w-full rounded-sm border-2 border-gray-300 mb-[6px]"
+        <input type="password" id="pass" class="bg-white text-[#64748B] p-1 w-full rounded-sm border-2 border-gray-300 mb-[6px]"
             required placeholder="Enter Password" minlength="8" />
         <p class="bg-white text-[#4A00FF] text-sm mb-4">Default: admin123</p>
 
-        <button class="indi text-white rounded-lg p-4 btn btn-block mb-6 hover:brightness-90">Sign
+        <button onclick="handleLogin()" class="indi text-white rounded-lg p-4 btn btn-block mb-6 hover:brightness-90">Sign
             In</button>
 
         <div class="bg-white flex items-center mb-6">
@@ -63,8 +63,6 @@
             <h3 class="text-[#1F2937]"><span class="font-semibold">Password:</span> admin123</h3>
         </div>
     </section>
-
-
 
     <!-- js file connect -->
     <script src="./script.js"></script>
