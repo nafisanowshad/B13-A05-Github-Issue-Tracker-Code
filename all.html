@@ -7,7 +7,7 @@
     <title>Github Issue Tracker | All</title>
 
     <!-- favicon connect -->
-    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/icon-fav.png" type="image/x-icon">
 
     <!-- stylesheet  -->
     <link rel="stylesheet" href="style.css">
@@ -29,7 +29,72 @@
 </head>
 
 <body>
-    <h1>All page landed!</h1>
+    <!-- navbar section  -->
+    <nav class="w-11/12 mx-auto p-5 flex justify-between">
+        <div class="flex gap-2">
+            <img src="./assets/github-logo.png" class="h-7" alt="">
+            <h3 class="text-[#1F2937] font-semibold text-2xl">GitHub Issues Tracker</h3>
+        </div>
+
+        <!-- search issues section  -->
+        <div class="flex gap-3">
+            <div class="flex gap-1">
+                <div>
+                    <label>
+                        <input type="text" placeholder="Search issues..." class="focus:outline-0 rounded-sm p-2"
+                            required />
+                    </label>
+                </div>
+                <button class="bg-[#4a00ff] text-white rounded-sm p-2 btn hover:brightness-90"><i
+                        class="fa-solid fa-plus"></i> New Issue</button>
+            </div>
+        </div>
+    </nav>
+
+    <hr class="border border-gray-200 mb-14">
+
+    <!-- active button section  -->
+    <section class=" bg-[#f8fafc] w-8/12 mx-auto mb-4">
+        <div class="flex gap-2 p-6 rounded-lg border-gray-100 shadow-md">
+            <button class="btn btn-soft px-7  bg-[#4a00ff] text-white hover:brightness-90">All</button>
+            <button class="btn btn-soft px-5  bg-white text-[#64748B] hover:brightness-90">Open</button>
+            <button class="btn btn-soft  bg-white text-[#64748B] hover:brightness-90">Closed</button>
+        </div>
+    </section>
+
+    <!-- issue section  -->
+    <section class="bg-[#f8fafc] flex justify-between w-8/12 mx-auto p-6 rounded-lg border-gray-100 shadow-sm mb-1">
+        <div class="flex gap-2">
+            <div class="flex justify-center items-center">
+                <img src="./assets/Aperture.png" class="border-9 border-[#ECE4FF] rounded-full" alt="">
+            </div>
+
+            <div>
+                <h3 class="text-[#1F2937] font-semibold text-xl">50 Issues</h3>
+                <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#00A96E]"></i> Open
+            </div>
+            <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#A855F7]"></i> Closed
+            </div>
+        </div>
+    </section>
+
+    <!-- loading section  -->
+    <section class="flex justify-center mx-auto my-10 hidden">
+        <span class="loading loading-bars loading-xl"></span>
+    </section>
+
+    <!-- modal section  -->
+    <dialog class="modal modal-bottom sm:modal-middle"> </dialog>
+
+    <!-- issue cards section  -->
+    <section class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-4 mx-auto max-w-7xl">
+    </section>
+
+    <script src="./function.js"></script>
 </body>
 
 </html>
