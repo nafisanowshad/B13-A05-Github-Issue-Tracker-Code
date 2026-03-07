@@ -41,7 +41,7 @@
             <div class="flex gap-1">
                 <div>
                     <label>
-                        <input type="text" placeholder="Search issues..." class="focus:outline-0 rounded-sm p-2"
+                        <input id="search-input" type="text" placeholder="Search issues..." class="focus:outline-0 rounded-sm p-2"
                             required />
                     </label>
                 </div>
@@ -55,10 +55,10 @@
 
     <!-- active button section  -->
     <section class=" bg-[#f8fafc] w-8/12 mx-auto mb-4">
-        <div class="flex gap-2 p-6 rounded-lg border-gray-100 shadow-md">
-            <button class="btn btn-soft px-7  bg-[#4a00ff] text-white hover:brightness-90">All</button>
-            <button class="btn btn-soft px-5  bg-white text-[#64748B] hover:brightness-90">Open</button>
-            <button class="btn btn-soft  bg-white text-[#64748B] hover:brightness-90">Closed</button>
+        <div id="btn-active" class="flex gap-2 p-6 rounded-lg border-gray-100 shadow-md">
+            <button class="nav-btn btn btn-soft px-7  bg-[#4a00ff] text-white hover:brightness-90">All</button>
+            <button class="nav-btn btn btn-soft px-5  bg-white text-[#64748B] hover:brightness-90">Open</button>
+            <button class="nav-btn btn btn-soft  bg-white text-[#64748B] hover:brightness-90">Closed</button>
         </div>
     </section>
 
@@ -83,15 +83,15 @@
     </section>
 
     <!-- loading section  -->
-    <section class="flex justify-center mx-auto my-10 hidden">
+    <section id="loading-container" class="flex justify-center mx-auto my-10 hidden">
         <span class="loading loading-bars loading-xl"></span>
     </section>
 
     <!-- modal section  -->
-    <dialog class="modal modal-bottom sm:modal-middle"> </dialog>
+    <dialog id="modal-section" class="modal modal-bottom sm:modal-middle"> </dialog>
 
     <!-- issue cards section  -->
-    <section class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-4 mx-auto max-w-7xl">
+    <section id="issue-card" class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-4 mx-auto max-w-7xl">
     </section>
 
     <script src="./function.js"></script>
