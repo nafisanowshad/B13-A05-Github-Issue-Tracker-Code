@@ -2,3 +2,8 @@
   font-family: "Geist", sans-serif;
   /* background-color: #f8fafc; */
 }
+
+.active-btn {
+    background-color: #4a00ff !important;
+    color: white !important;
+}

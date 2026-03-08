@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Issue Tracker | All</title>
+    <title>Github Issue Tracker | Main</title>
 
     <!-- favicon connect -->
     <link rel="shortcut icon" href="./assets/icon-fav.png" type="image/x-icon">
@@ -30,22 +30,22 @@
 
 <body>
     <!-- navbar section  -->
-    <nav class="w-11/12 mx-auto p-5 flex justify-between">
-        <div class="flex gap-2">
+    <nav class="w-11.5/12 mx-auto bg-[#f8fafc] md:flex md:justify-between">
+        <div class="flex gap-2 px-4 py-2 lg:py-4">
             <img src="./assets/github-logo.png" class="h-7" alt="">
-            <h3 class="text-[#1F2937] font-semibold text-2xl">GitHub Issues Tracker</h3>
+            <h3 class="text-[#1F2937] font-semibold  text-2xl">GitHub Issues Tracker</h3>
         </div>
 
         <!-- search issues section  -->
-        <div class="flex gap-3">
+        <div class="flex gap-3 px-4 py-2">
             <div class="flex gap-1">
                 <div>
                     <label>
-                        <input id="search-input" type="text" placeholder="Search issues..." class="focus:outline-0 rounded-sm p-2"
-                            required />
+                        <input id="input-search" type="text" placeholder="Search issues..."
+                            class="focus:outline-0 rounded-sm p-2" required />
                     </label>
                 </div>
-                <button class="bg-[#4a00ff] text-white rounded-sm p-2 btn hover:brightness-90"><i
+                <button id="btn-search" class="bg-[#4a00ff] text-white rounded-sm p-2 btn hover:brightness-90"><i
                         class="fa-solid fa-plus"></i> New Issue</button>
             </div>
         </div>
@@ -54,8 +54,8 @@
     <hr class="border border-gray-200 mb-14">
 
     <!-- active button section  -->
-    <section class=" bg-[#f8fafc] w-8/12 mx-auto mb-4">
-        <div id="btn-active" class="flex gap-2 p-6 rounded-lg border-gray-100 shadow-md">
+    <section class="w-11/12 mx-auto mb-4">
+        <div id="btn-active" class="flex gap-2 p-6 rounded-lg border-gray-100 bg-[#f8fafc] shadow-md">
             <button class="nav-btn btn btn-soft px-7  bg-[#4a00ff] text-white hover:brightness-90">All</button>
             <button class="nav-btn btn btn-soft px-5  bg-white text-[#64748B] hover:brightness-90">Open</button>
             <button class="nav-btn btn btn-soft  bg-white text-[#64748B] hover:brightness-90">Closed</button>
@@ -63,36 +63,80 @@
     </section>
 
     <!-- issue section  -->
-    <section class="bg-[#f8fafc] flex justify-between w-8/12 mx-auto p-6 rounded-lg border-gray-100 shadow-sm mb-1">
+    <section
+        class="bg-[#f8fafc] space-y-3 md:flex justify-between w-11/12 mx-auto p-6 rounded-lg border-gray-100 shadow-sm mb-1">
         <div class="flex gap-2">
             <div class="flex justify-center items-center">
                 <img src="./assets/Aperture.png" class="border-9 border-[#ECE4FF] rounded-full" alt="">
             </div>
 
             <div>
-                <h3 class="text-[#1F2937] font-semibold text-xl">50 Issues</h3>
-                <p class="text-[#64748B]">Track and manage your project issues</p>
+                <h3 class="text-[#1F2937] font-semibold text-lg md:text-xl"><span id="issueCount">0</span> Issues</h3>
+                <p class="text-sm md:text-base text-[#64748B]">Track and manage your project issues</p>
             </div>
         </div>
-        <div class="flex gap-3">
-            <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#00A96E]"></i> Open
+        <div class="flex gap-3 ml-2">
+            <div class="text-[#1F2937] font-medium
+            text-base"><i class="fa-solid fa-circle text-[#00A96E]"></i> Open
             </div>
             <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#A855F7]"></i> Closed
             </div>
         </div>
     </section>
 
-    <!-- loading section  -->
-    <section id="loading-container" class="flex justify-center mx-auto my-10 hidden">
-        <span class="loading loading-bars loading-xl"></span>
+    <!-- loading spinner section  -->
+    <section id="spinner" class="flex justify-center items-center mt-8 hidden">
+        <span class="loading loading-spinner loading-xl"></span>
+    </section>
+
+    <!-- issue cards section  -->
+    <section id="issue-container" class="w-11/12 mx-auto mt-10">
+        <div id="all-issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-[#f8fafc] rounded-xl p-8">
+            <!-- <div class="bg-white rounded-xl p-5 border-t-4 border-t-green-500 space-y-4">
+                    <div class="flex justify-between">
+                        <img class="w-8" src="./assets/Open-Status.png" alt="">
+                        <p class="bg-red-100 text-red-500 px-3 py-1 rounded-lg border border-red-400 font-medium">high
+                        </p>
+                    </div>
+                    <h1 class="text-2xl font-semibold">Fix navigation menu on mobile devices</h1>
+                    <p class="text-lg font-medium text-gray-400">The navigation menu doesn't collapse properly on mobile
+                        devices...</p>
+                    <div class="flex gap-3 items-center">
+                        <p
+                            class="bg-red-100 text-red-500 font-medium text-xl px-2 py-1 rounded-lg border border-red-500">
+                            <i class="fa-solid fa-bug"></i> BUG</p>
+                        <p
+                            class="bg-yellow-100 text-yellow-500 font-medium text-xl px-2 py-1 rounded-lg border border-yellow-500">
+                            <i class="fa-solid fa-life-ring"></i> HELP WANTED</p>
+                    </div>
+                    <br>
+                    <hr class="text-gray-300"><br>
+                    <p class="text-gray-400">#1by john_doe</p>
+                    <p class="text-gray-400">1/15/2024</p>
+
+                </div> -->
+        </div>
+        <div id="open-issues-container"
+            class="hidden grid grid-cols-1 md:grid-cols-4 gap-5 bg-[#f8fafc] rounded-xl p-8"></div>
+
+        <div id="closed-issues-container"
+            class="hidden grid grid-cols-1 md:grid-cols-4 gap-5 bg-[#f8fafc] rounded-xl p-8"></div>
     </section>
 
     <!-- modal section  -->
-    <dialog id="modal-section" class="modal modal-bottom sm:modal-middle"> </dialog>
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="details-container" class="space-y-5">
 
-    <!-- issue cards section  -->
-    <section id="issue-card" class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-4 mx-auto max-w-7xl">
-    </section>
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn bg-[#4a00ff] px-5">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
 
     <script src="./function.js"></script>
 </body>
