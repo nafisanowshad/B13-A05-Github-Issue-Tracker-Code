@@ -93,7 +93,17 @@ const displayAllIssue = (issues) => {
 
   issues.forEach((issue) => {
     // console.log(issue);
+
+    const labelColors = {
+      bug: "bg-red-100 text-red-500 border-red-500",
+      "help wanted": "bg-yellow-100 text-yellow-500 border-yellow-500",
+      enhancement: "bg-green-100 text-green-500 border-green-500",
+      "good first issue": "bg-purple-100 text-purple-500 border-purple-500",
+      documentation: "bg-blue-100 text-blue-500 border-blue-500",
+    };
+
     const card = document.createElement("div");
+    card.className = "h-full flex flex-col";
     card.innerHTML = `
         <div onclick="loadIssueDetail(${issue.id})" class="bg-white rounded-xl p-5 border-t-4 ${issue.status === "open" ? "border-t-green-500" : "border-t-purple-500"} space-y-4">
                     <div class="flex justify-between">
@@ -102,7 +112,7 @@ const displayAllIssue = (issues) => {
                             ? '<img class="w-8" src="./assets/Open-Status.png" alt=""></img>'
                             : '<img class="w-8" src="./assets/Closed- Status .png" alt="">'
                         }
-                        <p class="px-3 py-1 rounded-lg font-medium border 
+                        <p class="px-3 py-1 rounded-full font-medium border 
                             ${
                               issue.priority === "high"
                                 ? "bg-red-100 border-red-400 text-red-600"
@@ -116,12 +126,19 @@ const displayAllIssue = (issues) => {
                     <h1 class="text-2xl font-semibold">${issue.title}</h1>
                     <p class="text-lg font-medium text-gray-400">${issue.description}</p>
                     <div class="inline-block space-y-2 md:flex gap-3 items-center ">
-                        <p
-                            class="bg-red-100 text-red-500 font-medium text-xl px-2 py-1 rounded-lg border border-red-500"><i class="fa-solid fa-bug"></i> ${issue.labels[0]}</p>
-                        <p
-                            class="${issue.labels[1] ? "bg-yellow-100" : "bg-white"} text-yellow-500 font-medium text-xl px-2 py-1 rounded-lg ${issue.labels[1] ? "border border-yellow-500" : "border-none"}">
-                             ${issue.labels[1] ? issue.labels[1] : ""}
-                             </p>
+                        ${issue.labels
+                          .map((label) => {
+                            const lowerLabel = label.toLowerCase();
+                            const colorClass =
+                              labelColors[lowerLabel] ||
+                              "bg-gray-100 text-gray-500 border-gray-300";
+                            return `
+                        <p class="${colorClass} font-medium text-sm p-1 px-2 rounded-lg border">
+                             ${label}
+                        </p>
+                    `;
+                          })
+                          .join("")}
                     </div>
                     <br>
                     <hr class="text-gray-300"><br>
@@ -157,15 +174,54 @@ const loadIssueDetail = async (id) => {
 const displayIssueDetails = (issue) => {
   // console.log(issue);
   const detailsBox = document.getElementById("details-container");
+
+  const labelColors = {
+    bug: "bg-red-100 text-red-500 border-red-500",
+    "help wanted": "bg-yellow-100 text-yellow-500 border-yellow-500",
+    enhancement: "bg-green-100 text-green-500 border-green-500",
+    "good first issue": "bg-purple-100 text-purple-500 border-purple-500",
+    documentation: "bg-blue-100 text-blue-500 border-blue-500",
+  };
+
   detailsBox.innerHTML = `
         <div class="bg-white rounded-xl p-5 space-y-4">
-                    <div class="flex justify-between">
+        <h1 class="text-2xl font-semibold">${issue.title}</h1>
+                    <div class="flex justify-start items-center gap-2">
                         ${
                           issue.status === "open"
-                            ? `<p class="font-medium text-xl px-2 py-1 bg-green-400 rounded-lg">${issue.status}</p>`
-                            : `<p class="font-medium text-xl px-2 py-1 bg-red-400 rounded-lg">${issue.status}</p>`
+                            ? `<p class="font-medium text-xl text-white px-3 py-1 bg-green-600 rounded-full">${issue.status}</p>`
+                            : `<p class="font-medium text-xl text-white px-3
+                            py-1 bg-red-600 rounded-full">${issue.status}</p>`
                         }
-                        <p class="px-3 py-1 rounded-lg font-medium border 
+                        <p class="text-gray-500">• Opened by ${issue.author}</p>
+                    <p class="text-gray-500">• ${new Date(issue.createdAt).toLocaleDateString()}</p>
+                    </div>
+
+                    <div class="inline-block space-y-2 md:flex gap-3 items-center ">
+                  ${issue.labels
+                    .map((label) => {
+                      const lowerLabel = label.toLowerCase();
+                      const colorClass =
+                        labelColors[lowerLabel] ||
+                        "bg-gray-100 text-gray-500 border-gray-300";
+                      return `
+                       <p class="${colorClass} font-medium text-sm p-1 px-2 rounded-lg border">
+                           ${label}
+                       </p>
+                   `;
+                    })
+                    .join("")}
+                    </div>
+
+                    <p class="text-lg font-medium text-gray-600">${issue.description}</p>
+
+                  <div class="flex justify-between items-center bg-[#f8fafc] p-4 rounded-xl">
+                  <div class="grid grid-cols-1 text-lg font-medium text-gray-500">
+                  <div>Assignee:</div>
+                 <div class="text-black">${issue.assignee ? issue.assignee : "john_doe"}</div>
+                  </div>
+
+                <div class="px-3 py-1 rounded-lg font-medium border 
                             ${
                               issue.priority === "high"
                                 ? "bg-red-100 border-red-400 text-red-600"
@@ -174,22 +230,9 @@ const displayIssueDetails = (issue) => {
                                   : "bg-gray-300 border-gray-400 text-gray-700"
                             }">
                             ${issue.priority}
-                         </p>
-                    </div>
-                    <h1 class="text-2xl font-semibold">${issue.title}</h1>
-                    <p class="text-lg font-medium text-gray-400">${issue.description}</p>
-                    <div class="inline-block space-y-2 md:flex gap-3 items-center ">
-                        <p
-                            class="bg-red-100 text-red-500 font-medium text-xl px-2 py-1 rounded-lg border border-red-500">
-                            ${issue.labels[0]}</p>
-                        <p
-                            class="${issue.labels[1] ? "bg-yellow-100" : "bg-white"} text-yellow-500 font-medium text-xl px-2 py-1 rounded-lg ${issue.labels[1] ? "border border-yellow-500" : "border-none"}">
-                            ${issue.labels[1] ? issue.labels[1] : ""}</p>
-                    </div>
-                    <br>
-                    <hr class="text-gray-300"><br>
-                    <p class="text-gray-400">${issue.author}</p>
-                    <p class="text-gray-400">${new Date(issue.createdAt).toLocaleDateString()}</p>
+                </div> 
+
+                  </div>
                 </div>
         `;
   document.getElementById("my_modal_5").showModal();
