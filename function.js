@@ -110,7 +110,7 @@ const displayAllIssue = (issues) => {
                         ${
                           issue.status === "open"
                             ? '<img class="w-8" src="./assets/Open-Status.png" alt=""></img>'
-                            : '<img class="w-8" src="./assets/Closed- Status .png" alt="">'
+                            : '<img class="w-8" src="./assets/Closed-Status.png" alt="">'
                         }
                         <p class="px-3 py-1 rounded-full font-medium border 
                             ${
@@ -125,7 +125,7 @@ const displayAllIssue = (issues) => {
                     </div>
                     <h1 class="text-2xl font-semibold">${issue.title}</h1>
                     <p class="text-lg font-medium text-gray-400">${issue.description}</p>
-                    <div class="inline-block space-y-2 md:flex gap-3 items-center ">
+                    <div class="inline-block md:flex gap-3 items-center space-y-3 md:space-y-0">
                         ${issue.labels
                           .map((label) => {
                             const lowerLabel = label.toLowerCase();
@@ -140,9 +140,8 @@ const displayAllIssue = (issues) => {
                           })
                           .join("")}
                     </div>
-                    <br>
-                    <hr class="text-gray-300"><br>
-                    <p class="text-gray-400">${issue.author}</p>
+                    <hr class="text-gray-300">
+                    <p class="text-gray-400">#${issue.id} by ${issue.author}</p>
                     <p class="text-gray-400">${new Date(issue.createdAt).toLocaleDateString()}</p>
                 </div>
         `;
