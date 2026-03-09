@@ -19,7 +19,7 @@
    - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
 ---
 ### **Some JavaScript QnA:**
-    - 1️⃣ What is the difference between var, let, and const?
+### 1️⃣ What is the difference between var, let, and const?
 * Var is hoisted but it is a bad practice,
   let and const are also hoisted but in Temperal Dead Zone.
 * Var can declare multiple variables with the same name, but when there will be multi-line code we can get confused,
@@ -29,7 +29,8 @@
 * var maintains only fuction scope but not block or global scope,
   let and const maintain all function and global scope.    
 <br>
-    - 2️⃣ What is the spread operator (...)?
+
+### 2️⃣ What is the spread operator (...)?
 * The spread operator (...) in JavaScript provides a simple and expressive way to expand elements from arrays, strings, or objects. It helps make code cleaner by reducing the need for manual copying or looping. 
 * Syantax: array.forEach(function(element, index, array) {
          // perform action
@@ -38,7 +39,8 @@
          let b = [30, 40, ...a, 50, 60]; <br>
          console.log(b);
 <br>
-      - 3️⃣ What is the difference between map(), filter(), and forEach()?
+
+### 3️⃣ What is the difference between map(), filter(), and forEach()?
 **forEach():**
   * It doesnot return anything, can modify the original array.
  * Use Case:- For side effects like console.log, API calls.
@@ -63,7 +65,8 @@
            const evenNumbers = numbers.filter(num => num % 2 === 0); <br>
            console.log(evenNumbers); // Outputs: [2, 4]        
 <br>
-    - 4️⃣ What is an arrow function?
+
+### 4️⃣ What is an arrow function?
 * Arrow function is the shortcut version of traditional function in ES6, which does not hoisted.
 * Syntax: () => expression;
 
@@ -87,7 +90,8 @@
 
 * Example: const add = (a, b) => a * b;
 <br>
-    - 5️⃣ What are template literals?
+
+### 5️⃣ What are template literals?
 * Template literals are strings written using backticks (`) that allow variables and expressions to be embedded directly in ES6.It is used to dynamic a portion of code, which can be written in multi-line.
 * Syntax: `Text before ${variableOrExpression} text after`;
 * Example: const title = "Welcome"; <br>
