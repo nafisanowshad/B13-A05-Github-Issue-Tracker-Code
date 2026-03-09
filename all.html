@@ -28,165 +28,130 @@
 
 </head>
 
-<body>
-    <!-- navbar section  -->
-    <nav class="w-11.5/12 mx-auto bg-[#f8fafc] md:flex md:justify-between">
-        <div class="flex gap-2 px-4 py-2 lg:py-4">
-            <img src="./assets/github-logo.png" class="h-7" alt="">
-            <h3 class="text-[#1F2937] font-semibold  text-2xl">GitHub Issues Tracker</h3>
+<body class="bg-slate-50 min-h-screen">
+    <!-- navbar -->
+    <div class="navbar bg-[#FFFFFF] py-4 px-4 md:px-20 grid grid-cols-1 md:grid-cols-2 space-y-3 shadow-md sticky top-0 z-50 ">
+        <div class="navbar-logo flex items-center gap-2 ">
+            <img src="./assets/github-logo.png" alt="" class="w-9 h-9">
+            <h1 class="font-semibold text-lg md:text-2xl text-[#1F2937]">GitHub Issues Tracker</h1>
+        </div>
+        <div class="navbar-search md:flex gap-2 md:flex-row">
+            <label class="input w-5/9 md:w-full">
+                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+                <input id="searchBox" type="search" required  placeholder="Search issues..." />
+            </label>
+
+            <button id="newIssueBtn" class="btn btn-primary text-white">Search</button>
+        </div>
+    </div>
+    <!-- main-section -->
+    <div class="main-section w-10/12 lg:w-11/12 mx-auto pt-14">
+
+        <!-- button section -->
+        <div
+            class="buttons bg-[#FFFFFF]  mx-auto flex gap-2 p-4 drop-shadow-xl rounded-lg ">
+            <button onclick="currentState(allBtn)" id="allBtn"
+                class="btn btn-primary w-[80px] sm:w-[120px] hover:bg-indigo-400 hover:text-white ">All</button>
+            <button onclick="currentState(openBtn)" id="openBtn"
+                class="btn w-[80px] sm:w-[120px] hover:bg-indigo-400 hover:text-white">Open</button>
+            <button onclick="currentState(closedBtn)" id="closedBtn"
+                class="btn w-[80px] sm:w-[120px] hover:bg-indigo-400 hover:text-white ">Closed</button>
         </div>
 
-        <!-- search issues section  -->
-        <div class="flex gap-3 px-4 py-2">
-            <div class="flex gap-1">
+        <!-- issues section -->
+        <div class="issues mt-4 p-6 space-y-3 bg-white  rounded-lg md:flex justify-between border-b border-[#E4E4E7]">
+            <div class="right-side flex gap-4">
+                <div class="issue-logo bg-[#ECE4FF] w-[50px] h-[50px] rounded-full flex justify-center items-center">
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
                 <div>
-                    <label>
-                        <input id="input-search" type="text" placeholder="Search issues..."
-                            class="focus:outline-0 rounded-sm p-2" required />
-                    </label>
+                    <h2 class="text-[#1F2937] font-semibold text-xl"><span id="issueNumber">50</span> Issues</h2>
+                    <p class="text-[#64748B]">Track and manage your project issues</p>
                 </div>
-                <button id="btn-search" class="bg-[#4a00ff] text-white rounded-sm p-2 btn hover:brightness-90"><i
-                        class="fa-solid fa-plus"></i> New Issue</button>
             </div>
-        </div>
-    </nav>
-
-    <hr class="border border-gray-200 mb-14">
-
-    <!-- active button section  -->
-    <section class="w-11/12 mx-auto mb-4">
-        <div id="btn-active" class="flex gap-2 p-6 rounded-lg border-gray-100 bg-[#f8fafc] shadow-md">
-            <button class="nav-btn btn btn-soft px-7  bg-[#4a00ff] text-white hover:brightness-90">All</button>
-            <button class="nav-btn btn btn-soft px-5  bg-white text-[#64748B] hover:brightness-90">Open</button>
-            <button class="nav-btn btn btn-soft  bg-white text-[#64748B] hover:brightness-90">Closed</button>
-        </div>
-    </section>
-
-    <!-- issue section  -->
-    <section
-        class="bg-[#f8fafc] space-y-3 md:flex justify-between w-11/12 mx-auto p-6 rounded-lg border-gray-100 shadow-sm mb-1">
-        <div class="flex gap-2">
-            <div class="flex justify-center items-center">
-                <img src="./assets/Aperture.png" class="border-9 border-[#ECE4FF] rounded-full" alt="">
-            </div>
-
-            <div>
-                <h3 class="text-[#1F2937] font-semibold text-lg md:text-xl"><span id="issueCount">0</span> Issues</h3>
-                <p class="text-sm md:text-base text-[#64748B]">Track and manage your project issues</p>
-            </div>
-        </div>
-        <div class="flex gap-3 ml-2">
-            <div class="text-[#1F2937] font-medium
+            <div class="left-side flex gap-4 justify-end">
+                <div class="flex gap-2 items-center">
+                    <div class="text-[#1F2937] font-medium
             text-base"><i class="fa-solid fa-circle text-[#00A96E]"></i> Open
-            </div>
-            <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#A855F7]"></i> Closed
+                    </div>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <div class="text-[#1F2937] font-medium text-base"><i class="fa-solid fa-circle text-[#A855F7]"></i>
+                        Closed
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
 
-    <!-- loading spinner section  -->
-    <section id="spinner" class="flex justify-center items-center mt-8 hidden">
-        <span class="loading loading-spinner loading-xl"></span>
-    </section>
+        <!--cards section  -->
+        <div id="issueCardSection"
+            class="w-10/12 lg:w-11.5/12 mx-auto cards-container p-6 bg-[#f8fafc] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-items-center">
+            <!-- card -->
 
-    <!-- issue cards section  -->
-    <section id="issue-container" class="w-11/12 mx-auto mt-10">
-        <div id="all-issues-container"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-[#f8fafc] rounded-xl p-8">
-
-            <!-- <section>
-                <div class="bg-white rounded-xl p-5 space-y-4">
-                    <h1 class="text-2xl font-semibold">${issue.title}</h1>
-                    <div class="flex justify-start items-center gap-2">
-                        ${
-                        issue.status === "open"
-                        ? `<p class="font-medium text-xl text-white px-3 py-1 bg-green-600 rounded-full">${issue.status}
-                        </p>`
-                        : `<p class="font-medium text-xl text-white px-3
-                            py-1 bg-red-600 rounded-full">${issue.status}</p>`
-                        }
-                        <p class="text-gray-500">• Opened by ${issue.author}</p>
-                        <p class="text-gray-500">• ${new Date(issue.createdAt).toLocaleDateString()}</p>
-                    </div>
-
-                    <div class="inline-block space-y-2 md:flex gap-3 items-center ">
-                        ${issue.labels
-                        .map((label) => {
-                        const lowerLabel = label.toLowerCase();
-                        const colorClass =
-                        labelColors[lowerLabel] ||
-                        "bg-gray-100 text-gray-500 border-gray-300";
-                        return `
-                        <p class="${colorClass} font-medium text-sm p-1 px-2 rounded-lg border">
-                            ${label}
-                        </p>
-
-                    </div>
-
-                    <p class="text-lg font-medium text-gray-600">${issue.description}</p>
-
-                    <div class="flex justify-between items-center bg-[#f8fafc] p-4 rounded-xl">
-                        <div class="grid grid-cols-1 text-lg font-medium text-gray-500">
-                            <div>Assignee:</div>
-                            <div class="text-black">${issue.assignee ? issue.assignee : "john_doe"}</div>
-                        </div>
-
-                        <div class="px-3 py-1 rounded-lg font-medium border 
-                            ${
-                              issue.priority === " high" ? "bg-red-100 border-red-400 text-red-600" :
-                            issue.priority==="medium" ? "bg-yellow-100 border-yellow-400 text-yellow-600"
-                            : "bg-gray-300 border-gray-400 text-gray-700" }">
-                            ${issue.priority}
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="flex justify-between">
-                    <img class="w-8" src="./assets/Open-Status.png" alt="">
-                    <p class="bg-red-100 text-red-500 px-3 py-1 rounded-lg border border-red-400 font-medium">high
-                    </p>
-                </div>
-                <h1 class="text-2xl font-semibold">Fix navigation menu on mobile devices</h1>
-                <p class="text-lg font-medium text-gray-400">The navigation menu doesn't collapse properly on mobile
-                    devices...</p>
-                <div class="flex gap-3 items-center">
-                    <p class="bg-red-100 text-red-500 font-medium text-xl px-2 py-1 rounded-lg border border-red-500">
-                        <i class="fa-solid fa-bug"></i> BUG
-                    </p>
-                    <p
-                        class="bg-yellow-100 text-yellow-500 font-medium text-xl px-2 py-1 rounded-lg border border-yellow-500">
-                        <i class="fa-solid fa-life-ring"></i> HELP WANTED
-                    </p>
-                </div>
-                <br>
-                <hr class="text-gray-300"><br>
-                <p class="text-gray-400">#1by john_doe</p>
-                <p class="text-gray-400">1/15/2024</p>
-            </section> -->
         </div>
-        <div id="open-issues-container"
-            class="hidden grid grid-cols-1 md:grid-cols-4 gap-4 bg-[#f8fafc] rounded-xl p-8"></div>
 
-        <div id="closed-issues-container"
-            class="hidden grid grid-cols-1 md:grid-cols-4 gap-4 bg-[#f8fafc] rounded-xl p-8"></div>
-    </section>
+    </div>
 
-    <!-- modal section  -->
-    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <div id="details-container" class="space-y-5">
+    <!-- Modal Box -->
+    <dialog id="issueModal" class="modal">
+        <div class="bg-white rounded-xl p-8 shadow-xl  w-[85%] md:w-[60%] lg:w-[40%]">
+            <h3 id="modalTitle" class="text-3xl font-bold text-[#1F2937]">Fix broken image uploads</h3>
+
+            <div class="flex items-center gap-2 mt-3 text-[#64748B] text-[12px]">
+                <p id="modalStatus" class=" badge rounded-full bg-[#00A96E] text-white">Opened</p>
+                <span>•</span>
+                <p id="modalOpenBy">Fahim Ahmed</p>
+                <span>•</span>
+                <span id="modalOpenDate">22/02/2026</span>
+            </div>
+
+            <div id="modalLabels" class="flex gap-2 mt-4">
+            </div>
+
+            <p id="modalDescription" class="py-6 text-[#64748B]">
+                The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.
+            </p>
+
+            <div class="bg-base-200 p-5 rounded-lg flex  gap-[70px] sm:gap-[150px] lg:gap-[200px]">
+                <div>
+                    <p class="text-gray-500">Assignee:</p>
+                    <p id="modalAssignee" class="font-semibold">Fahim Ahmed</p>
+                </div>
+
+                <div>
+                    <p class="text-[#64748B] mb-2">Priority:</p>
+                    <span id="modalPriority" class="badge bg-[#EF4444] text-white">HIGH</span>
+                </div>
 
             </div>
             <div class="modal-action">
                 <form method="dialog">
-                    <button class="btn bg-[#4a00ff] text-white px-5">Close</button>
+                    <button class="btn bg-[#4A00FF]  text-white focus:outline-none">Close</button>
                 </form>
             </div>
+
         </div>
     </dialog>
 
+    <!-- loading spinner -->
 
+    <div id="loadingSpinner" class=" w-[50%] h-2/3 mx-auto flex  items-start pt-32 justify-center hidden">
+        <span class="loading loading-spinner loading-xs"></span>
+        <span class="loading loading-spinner loading-sm"></span>
+        <span class="loading loading-spinner loading-md"></span>
+        <span class="loading loading-spinner loading-lg"></span>
+        <span class="loading loading-spinner loading-xl border"></span>
+    </div>
+
+
+    <script src="./script.js"></script>
     <script src="./function.js"></script>
 </body>
 
