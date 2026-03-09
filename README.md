@@ -26,7 +26,7 @@
   let and const can not declare multiple variables with the same name.
 * Var and let can be reassigned,
   const can not be reassigned.
-* var maintains only fuction scope but not block or global scope,
+* var maintains only function scope but not block or global scope,
   let and const maintain all function and global scope.    
 <br>
 
@@ -46,6 +46,7 @@
  * Use Case:- For side effects like console.log, API calls.
   * Example: const numbers = [1, 2, 3, 4];<br>
            numbers.forEach(num => console.log(num * 2)); // Outputs:2, 4, 6, 8
+           <br>
 **map():**
   * It returns a new array, doesnot modify the original array.
   * Use Case:- When you need a transformed array.
@@ -55,6 +56,7 @@
   * Example: const numbers = [1, 2, 3, 4]; <br>
            const doubled = numbers.map(num => num * 2); <br>
            console.log(doubled); // Outputs: [2, 4, 6, 8]
+           <br>
 **filter():**
   * It returns a new array based on the function condition, if no condition matches it returns an empty array, doesnot modify the original array.
   * Use Case:- For creating a subset of the original array based on certain criteria.
