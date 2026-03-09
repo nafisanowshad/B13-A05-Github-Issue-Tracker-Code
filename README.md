@@ -49,6 +49,7 @@
            <br>
 **map():**
 <br>
+
   * It returns a new array, doesnot modify the original array.
   * Use Case:- When you need a transformed array.
   * Syntax: const newArray = array.map(function(element, index, array) { <br>
