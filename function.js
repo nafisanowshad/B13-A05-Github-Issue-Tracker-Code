@@ -31,6 +31,7 @@ function currentState(id) {
             state.classList.remove("bg-indigo-400", "hover:text-white");
             state.classList.add("btn-primary");
         }
+        
         else {
             state.classList.add("hover:bg-indigo-400", "hover:text-white");
         }
