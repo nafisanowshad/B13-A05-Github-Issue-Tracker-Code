@@ -48,6 +48,7 @@
            numbers.forEach(num => console.log(num * 2)); // Outputs:2, 4, 6, 8
            <br>
 **map():**
+<br>
   * It returns a new array, doesnot modify the original array.
   * Use Case:- When you need a transformed array.
   * Syntax: const newArray = array.map(function(element, index, array) { <br>
@@ -57,7 +58,9 @@
            const doubled = numbers.map(num => num * 2); <br>
            console.log(doubled); // Outputs: [2, 4, 6, 8]
            <br>
+           
 **filter():**
+<br>
   * It returns a new array based on the function condition, if no condition matches it returns an empty array, doesnot modify the original array.
   * Use Case:- For creating a subset of the original array based on certain criteria.
   * Syntax: const filteredArray = array.filter(function(element, index, array) { <br>
